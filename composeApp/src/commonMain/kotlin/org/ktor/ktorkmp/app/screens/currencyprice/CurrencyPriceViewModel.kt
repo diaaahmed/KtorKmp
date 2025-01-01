@@ -23,8 +23,7 @@ class CurrencyPriceViewModel(
         getCurrencyPrice()
     }
 
-    private fun getCurrencyPrice()
-    {
+    private fun getCurrencyPrice() {
         viewModelScope.launch {
             currencyPriceRepo.getCurrencyPrice()
                 .collect{response->

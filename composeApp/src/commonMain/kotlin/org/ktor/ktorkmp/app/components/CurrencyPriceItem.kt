@@ -32,7 +32,6 @@ fun CurrencyPriceItem(
 
 )
 {
-
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
@@ -46,7 +45,6 @@ fun CurrencyPriceItem(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             Row(
                 modifier = Modifier.weight(1.5f),
                 verticalAlignment = Alignment.CenterVertically,

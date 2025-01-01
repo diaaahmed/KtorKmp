@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -8,10 +7,28 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
-
+    alias(libs.plugins.cocoaPods)
 }
 
 kotlin {
+
+    cocoapods {
+        version = "1.0"
+        summary = "Some description for a Kotlin/Native module"
+        homepage = "Link to a Kotlin/Native module homepage"
+        name = "Shared"
+        ios.deploymentTarget = "14.0"
+
+        framework {
+            baseName = "Shared"
+            isStatic = false
+        }
+
+        pod("PayTabsSDK"){
+            version = "6.6.18"
+        }
+    }
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -65,6 +82,7 @@ kotlin {
 
         iosMain.dependencies{
             implementation(libs.ktor.client.darwin)
+
         }
     }
 }

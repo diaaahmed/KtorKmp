@@ -7,5 +7,6 @@ import org.ktor.ktorkmp.app.screens.App
 fun MainViewController() = ComposeUIViewController(
     configure = {
         initKoin()
+
     }
 ) { App() }

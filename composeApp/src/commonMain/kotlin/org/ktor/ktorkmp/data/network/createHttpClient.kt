@@ -21,14 +21,14 @@ fun createHttpClient(engine: HttpClientEngine): HttpClient {
         install(ResponseObserver) {
             onResponse { response ->
 
-                android.util.Log.d(TAG_HTTP_STATUS_LOGGER, "${response.status.value}")
+              //  android.util.Log.d(TAG_HTTP_STATUS_LOGGER, "${response.status.value}")
             }
         }
 
         install(Logging) {
             logger = object : Logger {
                 override fun log(message: String) {
-                    android.util.Log.d(TAG_KTOR_LOGGER, message)
+                //    android.util.Log.d(TAG_KTOR_LOGGER, message)
                 }
 
             }
