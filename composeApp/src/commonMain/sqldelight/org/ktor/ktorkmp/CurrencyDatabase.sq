@@ -1,0 +1,17 @@
+CREATE TABLE ItemTable (
+currencyName TEXT NOT NULL,
+currencySale TEXT NOT NULL,
+currencyBye TEXT NOT NULL,
+currencyFlag TEXT NOT NULL
+);
+
+readlAllItems:
+SELECT ItemTable.*
+FROM ItemTable;
+
+insertItem:
+INSERT INTO ItemTable(currencyName,currencySale,currencyBye,currencyFlag)
+VALUES (?,?,?,?);
+
+removeAllItems:
+DELETE FROM ItemTable;

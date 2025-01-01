@@ -8,5 +8,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.cocoaPods) apply false
+    alias(libs.plugins.sqlDelight) apply false
 
 }
