@@ -21,10 +21,10 @@ class ItemSDK(
                 println("Diaa load data from internet")
 
                 apiRepo.getCurrencyPrice()
-                    .collect{
-                        when(it){
+                    .collect{currencyResponse->
+                        when(currencyResponse){
                             is Result.Error -> {
-                                emit(Result.Error(it.message.toString()))
+                                emit(Result.Error(currencyResponse.message.toString()))
                             }
                             is Result.Loading -> {
                                 emit(Result.Loading())
@@ -32,9 +32,11 @@ class ItemSDK(
                             }
                             is Result.Success -> {
                                 localDatabase.removeAllItems()
-                                localDatabase.insertItem(it.data!!)
-                                val localDate = localDatabase.readAllItems()
-                                emit(Result.Success(localDate))
+                                    .also {
+                                        localDatabase.insertItem(currencyResponse.data!!)
+                                        val localDate = localDatabase.readAllItems()
+                                        emit(Result.Success(localDate))
+                                    }
                             }
                         }
                     }

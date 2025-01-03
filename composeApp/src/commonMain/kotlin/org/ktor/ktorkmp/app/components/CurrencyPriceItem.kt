@@ -52,8 +52,8 @@ fun CurrencyPriceItem(
 
                 CoilImage(
                     modifier = Modifier
-                        .size(60.dp)
-                        .clip(RoundedCornerShape(size = 10.dp)),
+                        .size(40.dp)
+                        .clip(RoundedCornerShape(size = 8.dp)),
                     imageModel = {item.flag},
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,

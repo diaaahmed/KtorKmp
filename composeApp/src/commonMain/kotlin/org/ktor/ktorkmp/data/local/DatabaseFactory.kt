@@ -3,14 +3,18 @@ package org.ktor.ktorkmp.data.local
 import app.cash.sqldelight.db.SqlDriver
 import org.ktor.ktorkmp.CurrencyDatabase
 import org.ktor.ktorkmp.data.model.CurrencyPriceModel
-import org.ktor.ktorkmp.domain.entity.CurrencyPrice
+
+expect class DatabaseFactory{
+    fun createDriver():SqlDriver
+
+}
 
 interface DatabaseDriverFactory{
     fun createDriver():SqlDriver
 }
 
 class LocalDatabase(
-    databaseDriverFactory: DatabaseDriverFactory
+    databaseDriverFactory: DatabaseFactory
 ){
     private val database = CurrencyDatabase(databaseDriverFactory.createDriver())
 

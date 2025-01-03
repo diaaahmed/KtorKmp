@@ -40,6 +40,7 @@ class CurrencyPriceViewModel(
                             _currencyPriceState.update { Result.Loading() }
                         }
                         is Result.Success -> {
+
                             _currencyPriceState.update { Result.Success(response.data!!) }
                         }
                     }

@@ -5,6 +5,7 @@ currencyBye TEXT NOT NULL,
 currencyFlag TEXT NOT NULL
 );
 
+
 readlAllItems:
 SELECT ItemTable.*
 FROM ItemTable;
@@ -15,3 +16,6 @@ VALUES (?,?,?,?);
 
 removeAllItems:
 DELETE FROM ItemTable;
+
+
+

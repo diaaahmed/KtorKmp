@@ -143,4 +143,7 @@ android {
         }
     }
 }
+dependencies {
+    implementation(libs.androidx.annotation.jvm)
+}
 
