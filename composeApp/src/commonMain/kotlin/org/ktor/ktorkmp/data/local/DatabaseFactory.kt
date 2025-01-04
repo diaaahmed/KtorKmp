@@ -2,6 +2,7 @@ package org.ktor.ktorkmp.data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import org.ktor.ktorkmp.CurrencyDatabase
+import org.ktor.ktorkmp.ItemTable
 import org.ktor.ktorkmp.data.model.CurrencyPriceModel
 
 expect class DatabaseFactory{
@@ -29,6 +30,13 @@ class LocalDatabase(
                     buy = it.currencyBye,
                     flag = it.currencyFlag)
             }
+    }
+
+    fun getItemByCurrencyName(name:String):CurrencyPriceModel{
+        val model = query.getItemByCurrencyName(name).executeAsOneOrNull()
+
+        return CurrencyPriceModel(
+            model!!.currencyName,model.currencySale,model.currencyBye,model.currencyFlag)
     }
 
      fun insertItem(items:List<CurrencyPriceModel>){

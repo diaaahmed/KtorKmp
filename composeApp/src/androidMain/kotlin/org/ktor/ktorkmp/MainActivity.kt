@@ -23,6 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl)
             {
+
                 Scaffold {
                     Box(
                         modifier = Modifier

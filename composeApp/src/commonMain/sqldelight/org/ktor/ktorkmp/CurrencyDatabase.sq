@@ -5,6 +5,10 @@ currencyBye TEXT NOT NULL,
 currencyFlag TEXT NOT NULL
 );
 
+getItemByCurrencyName:
+SELECT *
+FROM ItemTable
+WHERE currencyName = :name;
 
 readlAllItems:
 SELECT ItemTable.*
