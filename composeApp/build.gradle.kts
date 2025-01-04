@@ -7,29 +7,13 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.cocoaPods)
+    // alias(libs.plugins.cocoaPods)
     alias(libs.plugins.sqlDelight)
 
 }
 
 kotlin {
 
-    cocoapods {
-        version = "1.0"
-        summary = "Some description for a Kotlin/Native module"
-        homepage = "Link to a Kotlin/Native module homepage"
-        name = "Shared"
-        ios.deploymentTarget = "14.0"
-
-        framework {
-            baseName = "Shared"
-            isStatic = false
-        }
-
-        pod("PayTabsSDK"){
-            version = "6.6.18"
-        }
-    }
 
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -88,6 +72,9 @@ kotlin {
 
             implementation(libs.multiplatform.settings)
             implementation(libs.multiplatform.settings.no.arg)
+
+            api(libs.dataStore)
+            api(libs.dataStore.prefernces)
         }
 
         iosMain.dependencies{

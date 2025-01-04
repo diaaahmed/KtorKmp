@@ -10,18 +10,36 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.ktor.ktorkmp.app.components.CurrencyPriceItem
 import org.ktor.ktorkmp.app.components.MainRow
 import org.ktor.ktorkmp.data.model.CurrencyPriceModel
+import org.ktor.ktorkmp.data.settings.getData
+import org.ktor.ktorkmp.data.settings.saveData
 import org.ktor.ktorkmp.domain.util.Result
 
 @OptIn(KoinExperimentalAPI::class)
 @Composable
 fun CurrencyPriceScreen() {
+
+
+    val scope = rememberCoroutineScope()
+
+    scope.launch {
+
+        println("diaa ${getData().toString()}")
+        delay(2000)
+        saveData()
+        delay(2000)
+        println("diaa ${getData().toString()}")
+    }
+
     val currencyPriceViewModel: CurrencyPriceViewModel = koinViewModel()
 
     val currencyState by currencyPriceViewModel.currencyPriceState.collectAsState()
