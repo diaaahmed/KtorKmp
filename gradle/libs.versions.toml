@@ -29,9 +29,13 @@ dateTime = "0.6.1"
 annotationJvm = "1.9.1"
 dataStoreVersion = "1.1.1"
 voyagerVersion = "1.1.0-beta02"
+sdpversion = "1.0.4"
 
 
 [libraries]
+
+#SDP
+screen-sdp  ={module = "network.chaintech:sdp-ssp-compose-multiplatform",version.ref = "sdpversion"}
 
 #Datastore
 dataStore = { module = "androidx.datastore:datastore", version.ref = "dataStoreVersion" }
@@ -43,6 +47,7 @@ voyager-tab = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.re
 voyager-transition = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 voyager-screen-model = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyagerVersion" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyagerVersion" }
+voyager-bottomsheet  ={module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator",version.ref = "voyagerVersion"}
 
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }

@@ -15,7 +15,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
@@ -59,6 +58,9 @@ fun CurrencyPriceContent(
     currencyState: Result<List<CurrencyPriceModel>>,
     onNavigateClick :  () -> Unit = {}
 ) {
+
+    println("diaa here")
+
     when (currencyState) {
         is Result.Error -> {
             Text(text = currencyState.message.toString())

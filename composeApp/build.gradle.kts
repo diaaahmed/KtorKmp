@@ -52,6 +52,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -63,6 +64,10 @@ kotlin {
             implementation(libs.voyager.transition)
             implementation(libs.voyager.screen.model)
             implementation(libs.voyager.koin)
+            implementation(libs.voyager.bottomsheet)
+
+            implementation(libs.screen.sdp)
+
 
             implementation(libs.bundles.ktor)
 
