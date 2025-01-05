@@ -58,6 +58,12 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.tab)
+            implementation(libs.voyager.transition)
+            implementation(libs.voyager.screen.model)
+            implementation(libs.voyager.koin)
+
             implementation(libs.bundles.ktor)
 
             api(libs.koin.core)
