@@ -22,4 +22,21 @@ removeAllItems:
 DELETE FROM ItemTable;
 
 
+CREATE TABLE GoldTable (
+karat TEXT NOT NULL,
+sale TEXT NOT NULL,
+bye TEXT NOT NULL);
+
+readlAllItemsFromGoldPrice:
+SELECT GoldTable.*
+FROM GoldTable;
+
+insertItemIntoGoldPrice:
+INSERT INTO GoldTable(karat,sale,bye)
+VALUES (?,?,?);
+
+removeAllItemsFromGoldPrice:
+DELETE FROM GoldTable;
+
+
 

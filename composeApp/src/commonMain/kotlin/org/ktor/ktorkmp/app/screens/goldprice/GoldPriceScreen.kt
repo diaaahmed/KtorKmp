@@ -1,4 +1,4 @@
-package org.ktor.ktorkmp.app.screens.currencyprice
+package org.ktor.ktorkmp.app.screens.goldprice
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,45 +10,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import org.ktor.ktorkmp.app.components.CurrencyPriceItem
+import org.ktor.ktorkmp.app.components.GoldPriceItem
 import org.ktor.ktorkmp.app.components.MainRow
-import org.ktor.ktorkmp.app.components.SpacerHorizontal15
 import org.ktor.ktorkmp.app.components.SpacerVertical15
 import org.ktor.ktorkmp.app.components.TopAppBarScreen
-import org.ktor.ktorkmp.data.model.CurrencyPriceModel
-import org.ktor.ktorkmp.data.settings.getData
-import org.ktor.ktorkmp.data.settings.saveData
+import org.ktor.ktorkmp.domain.entity.GoldPrice
 import org.ktor.ktorkmp.domain.util.Result
 
 @Composable
-fun CurrencyPriceScreen(
-    currencyPriceViewModel: CurrencyPriceViewModel
+fun GoldPriceScreen(
+    currencyPriceViewModel: GoldPriceViewModel
 ) {
 
-    val scope = rememberCoroutineScope()
+    val currencyState by currencyPriceViewModel.goldPriceState.collectAsState()
 
-    scope.launch {
-
-        println("diaa ${getData()}")
-        delay(2000)
-        saveData()
-        delay(2000)
-        println("diaa ${getData()}")
-    }
-
-    val currencyState by currencyPriceViewModel.currencyPriceState.collectAsState()
-
-    CurrencyPriceContent(currencyState)
+    GoldPriceContent(currencyState)
 }
 
 @Composable
-fun CurrencyPriceContent(
-    currencyState: Result<List<CurrencyPriceModel>>,
+fun GoldPriceContent(
+    goldState: Result<List<GoldPrice>>,
 ) {
 
     Column {
@@ -57,9 +40,9 @@ fun CurrencyPriceContent(
 
         SpacerVertical15()
 
-        when (currencyState) {
+        when (goldState) {
             is Result.Error -> {
-                Text(text = currencyState.message.toString())
+                Text(text = goldState.message.toString())
             }
 
             is Result.Loading -> {
@@ -74,13 +57,12 @@ fun CurrencyPriceContent(
             is Result.Success -> {
 
                 Column {
-
-                    MainRow("العملة")
+                    MainRow("عيار")
 
                     LazyColumn {
-                        items(currencyState.data!!)
+                        items(goldState.data!!)
                         {
-                            CurrencyPriceItem(
+                            GoldPriceItem(
                                 item = it
                             )
                         }

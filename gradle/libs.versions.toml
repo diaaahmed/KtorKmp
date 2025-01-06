@@ -28,7 +28,7 @@ settings = "1.2.0"
 dateTime = "0.6.1"
 annotationJvm = "1.9.1"
 dataStoreVersion = "1.1.1"
-voyagerVersion = "1.1.0-beta02"
+voyagerVersion = "1.1.0-beta03"
 sdpversion = "1.0.4"
 
 

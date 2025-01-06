@@ -2,8 +2,8 @@ package org.ktor.ktorkmp.data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import org.ktor.ktorkmp.CurrencyDatabase
-import org.ktor.ktorkmp.ItemTable
 import org.ktor.ktorkmp.data.model.CurrencyPriceModel
+import org.ktor.ktorkmp.domain.entity.GoldPrice
 
 expect class DatabaseFactory{
     fun createDriver():SqlDriver
@@ -20,8 +20,10 @@ class LocalDatabase(
     private val database = CurrencyDatabase(databaseDriverFactory.createDriver())
 
     private val query = database.currencyDatabaseQueries
+  //  private val goldQuery = database.goldDatabaseQueries
 
     fun readAllItems():List<CurrencyPriceModel>{
+
         return query.readlAllItems().executeAsList()
             .map {
                 CurrencyPriceModel(
@@ -32,7 +34,20 @@ class LocalDatabase(
             }
     }
 
+    fun readAllItemsFromGolds():List<GoldPrice>{
+
+        return query.readlAllItemsFromGoldPrice().executeAsList()
+            .map {
+                GoldPrice(
+                    karat = it.karat,
+                    sell = it.sale,
+                    buy = it.bye,
+                   )
+            }
+    }
+
     fun getItemByCurrencyName(name:String):CurrencyPriceModel{
+
         val model = query.getItemByCurrencyName(name).executeAsOneOrNull()
 
         return CurrencyPriceModel(
@@ -49,6 +64,21 @@ class LocalDatabase(
                     currencyFlag = it.flag)
             }
         }
+    }
+    fun insertItemToGolds(items:List<GoldPrice>){
+        query.transaction {
+            items.forEach {
+                query.insertItemIntoGoldPrice(
+                    karat = it.karat,
+                    sale = it.sell,
+                    bye = it.buy)
+            }
+        }
+    }
+
+    fun removeAllItemsFromGolds()
+    {
+        query.removeAllItemsFromGoldPrice()
     }
 
     fun removeAllItems()

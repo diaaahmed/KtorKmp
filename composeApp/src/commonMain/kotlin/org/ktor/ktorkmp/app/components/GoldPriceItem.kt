@@ -2,12 +2,9 @@ package org.ktor.ktorkmp.app.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -23,12 +20,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil3.CoilImage
-import org.ktor.ktorkmp.data.model.CurrencyPriceModel
+import ktorkmp.composeapp.generated.resources.Res
+import ktorkmp.composeapp.generated.resources.coin
+import org.jetbrains.compose.resources.painterResource
+import org.ktor.ktorkmp.domain.entity.GoldPrice
 
 @Composable
-fun CurrencyPriceItem(
+fun GoldPriceItem(
     modifier: Modifier = Modifier,
-    item: CurrencyPriceModel,
+    item: GoldPrice,
     content: @Composable () -> Unit = {}
 
 )
@@ -55,7 +55,9 @@ fun CurrencyPriceItem(
                     modifier = Modifier
                         .size(40.dp)
                         .clip(RoundedCornerShape(size = 8.dp)),
-                    imageModel = {item.flag},
+                    imageModel = { item.buy},
+                    loading = { painterResource(Res.drawable.coin) },
+                    failure = { painterResource(Res.drawable.coin) },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,
                         alignment = Alignment.Center
@@ -63,20 +65,20 @@ fun CurrencyPriceItem(
                 )
 
                 SpacerHorizontal15()
-                Text(text = item.currency, textAlign = TextAlign.Center, color = Color.Black)
+                Text(text = item.karat, textAlign = TextAlign.Center, color = Color.Black)
 
                 SpacerHorizontal15()
             }
             Text(
                 modifier = Modifier.weight(1f),
-                text = item.sell,
+                text = item.buy,
                 textAlign = TextAlign.Center,
                 color = Color.Black
             )
             SpacerHorizontal15()
             Text(
                 modifier = Modifier.weight(1f),
-                text = item.buy,
+                text = item.sell,
                 textAlign = TextAlign.Center,
                 color = Color.Black
             )
@@ -85,16 +87,4 @@ fun CurrencyPriceItem(
 
         }
     }
-}
-
-@Composable
-fun SpacerHorizontal15() {
-    Spacer(modifier = Modifier.width(15.dp))
-
-}
-
-@Composable
-fun SpacerVertical15() {
-    Spacer(modifier = Modifier.height(15.dp))
-
 }
