@@ -1,3 +1,6 @@
+
+
+
 CREATE TABLE ItemTable (
 currencyName TEXT NOT NULL,
 currencySale TEXT NOT NULL,
@@ -37,6 +40,24 @@ VALUES (?,?,?);
 
 removeAllItemsFromGoldPrice:
 DELETE FROM GoldTable;
+
+CREATE TABLE BankTable (
+bankName TEXT NOT NULL,
+sale TEXT NOT NULL,
+flag TEXT NOT NULL DEFAULT '',
+bye TEXT NOT NULL);
+
+readlAllItemsBank:
+SELECT BankTable.*
+FROM BankTable;
+
+insertItemToBank:
+INSERT INTO BankTable(bankName,flag,sale,bye)
+VALUES (?,?,?,?);
+
+removeAllItemsFromBank:
+DELETE FROM BankTable;
+
 
 
 

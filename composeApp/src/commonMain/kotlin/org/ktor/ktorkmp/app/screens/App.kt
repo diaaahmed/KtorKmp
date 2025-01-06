@@ -20,6 +20,7 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import network.chaintech.sdpcomposemultiplatform.sdp
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.ktor.ktorkmp.app.tabs.BankTab
 import org.ktor.ktorkmp.app.tabs.CurrencyTab
 import org.ktor.ktorkmp.app.tabs.GoldTab
 
@@ -27,8 +28,6 @@ import org.ktor.ktorkmp.app.tabs.GoldTab
 @Preview
 fun App() {
     MaterialTheme {
-     //   Navigator(CurrencyScreen())
-
         TabNavigator(CurrencyTab)
         {
             Scaffold(
@@ -54,6 +53,7 @@ fun App() {
 
                         TabNavigationItem(CurrencyTab)
                         TabNavigationItem(GoldTab)
+                        TabNavigationItem(BankTab)
                     }
                 }
             )

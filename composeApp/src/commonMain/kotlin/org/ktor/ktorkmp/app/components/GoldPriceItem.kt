@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -56,8 +57,18 @@ fun GoldPriceItem(
                         .size(40.dp)
                         .clip(RoundedCornerShape(size = 8.dp)),
                     imageModel = { item.buy},
-                    loading = { painterResource(Res.drawable.coin) },
-                    failure = { painterResource(Res.drawable.coin) },
+                    loading = {
+                        Icon(
+                            painter = painterResource(Res.drawable.coin),
+                            contentDescription = "",
+                        )
+                    },
+                    failure = {
+                        Icon(
+                            painter = painterResource(Res.drawable.coin),
+                            contentDescription = "",
+                        )
+                    },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop,
                         alignment = Alignment.Center

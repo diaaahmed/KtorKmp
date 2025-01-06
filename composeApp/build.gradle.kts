@@ -68,7 +68,6 @@ kotlin {
 
             implementation(libs.screen.sdp)
 
-
             implementation(libs.bundles.ktor)
 
             api(libs.koin.core)

@@ -23,9 +23,9 @@ class GoldPriceViewModel(
         getGoldPrice()
     }
 
-    private fun getGoldPrice() {
+     fun getGoldPrice(refresh:Boolean = false) {
         screenModelScope.launch {
-            itemSDK.getGoldPriceFromCache()
+            itemSDK.getGoldPriceFromCache(refresh)
                 .collect{response->
 
                     when(response)

@@ -3,11 +3,11 @@ package org.ktor.ktorkmp.data.local
 import app.cash.sqldelight.db.SqlDriver
 import org.ktor.ktorkmp.CurrencyDatabase
 import org.ktor.ktorkmp.data.model.CurrencyPriceModel
+import org.ktor.ktorkmp.domain.entity.BankPrice
 import org.ktor.ktorkmp.domain.entity.GoldPrice
 
 expect class DatabaseFactory{
     fun createDriver():SqlDriver
-
 }
 
 interface DatabaseDriverFactory{
@@ -20,10 +20,31 @@ class LocalDatabase(
     private val database = CurrencyDatabase(databaseDriverFactory.createDriver())
 
     private val query = database.currencyDatabaseQueries
-  //  private val goldQuery = database.goldDatabaseQueries
+
+    fun insertToBank(items:List<BankPrice>){
+        query.transaction {
+            items.forEach {
+                query.insertItemToBank(
+                    bankName = it.bank,
+                    sale = it.sell,
+                    flag = it.flag,
+                    bye = it.buy)
+            }
+        }
+    }
+
+    fun readBankItems():List<BankPrice>{
+        return query.readlAllItemsBank().executeAsList()
+            .map {
+                BankPrice(
+                    bank = it.bankName,
+                    sell = it.sale,
+                    flag = it.flag,
+                    buy = it.bye,)
+            }
+    }
 
     fun readAllItems():List<CurrencyPriceModel>{
-
         return query.readlAllItems().executeAsList()
             .map {
                 CurrencyPriceModel(

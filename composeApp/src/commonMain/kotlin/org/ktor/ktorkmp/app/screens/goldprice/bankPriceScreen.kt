@@ -1,18 +1,12 @@
 package org.ktor.ktorkmp.app.screens.goldprice
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.ktor.ktorkmp.app.components.GoldPriceItem
+import org.ktor.ktorkmp.app.components.CircleIndicator
+import org.ktor.ktorkmp.app.components.MainLazyColumn
 import org.ktor.ktorkmp.app.components.MainRow
 import org.ktor.ktorkmp.app.components.SpacerVertical15
 import org.ktor.ktorkmp.app.components.TopAppBarScreen
@@ -27,16 +21,22 @@ fun GoldPriceScreen(
     val currencyState by currencyPriceViewModel.goldPriceState.collectAsState()
 
     GoldPriceContent(currencyState)
+    {
+        currencyPriceViewModel.getGoldPrice(true)
+    }
 }
 
 @Composable
 fun GoldPriceContent(
     goldState: Result<List<GoldPrice>>,
+    onRefreshClick : () -> Unit = {}
 ) {
 
     Column {
 
-        TopAppBarScreen()
+        TopAppBarScreen{
+            onRefreshClick()
+        }
 
         SpacerVertical15()
 
@@ -46,12 +46,7 @@ fun GoldPriceContent(
             }
 
             is Result.Loading -> {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
+                CircleIndicator()
             }
 
             is Result.Success -> {
@@ -59,14 +54,9 @@ fun GoldPriceContent(
                 Column {
                     MainRow("عيار")
 
-                    LazyColumn {
-                        items(goldState.data!!)
-                        {
-                            GoldPriceItem(
-                                item = it
-                            )
-                        }
-                    }
+                    MainLazyColumn(
+                        list = goldState.data!!
+                    )
                 }
             }
         }

@@ -25,9 +25,11 @@ class CurrencyPriceViewModel(
         getCurrencyPrice()
     }
 
-    private fun getCurrencyPrice() {
+     fun getCurrencyPrice(
+        refresh:Boolean = false
+    ) {
         screenModelScope.launch {
-            itemSDK.getCurrencyPriceFromCache()
+            itemSDK.getCurrencyPriceFromCache(refresh)
                 .collect{response->
 
                     when(response)
