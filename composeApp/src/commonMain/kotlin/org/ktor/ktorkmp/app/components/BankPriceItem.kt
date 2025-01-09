@@ -98,4 +98,5 @@ fun BankPriceItem(
 
         }
     }
+
 }
