@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
     // alias(libs.plugins.cocoaPods)
-    alias(libs.plugins.sqlDelight)
 
 }
 
@@ -43,7 +42,6 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
 
-            implementation(libs.sqldelight.android)
 
 
         }
@@ -88,7 +86,6 @@ kotlin {
 
         iosMain.dependencies{
             implementation(libs.ktor.client.darwin)
-            implementation(libs.sqldelight.ios)
 
 
         }
@@ -131,13 +128,6 @@ android {
         debugImplementation(compose.uiTooling)
     }
 
-    sqldelight {
-        databases {
-            create("CurrencyDatabase") {
-                packageName.set("org.ktor.ktorkmp")
-            }
-        }
-    }
 }
 dependencies {
     implementation(libs.androidx.annotation.jvm)

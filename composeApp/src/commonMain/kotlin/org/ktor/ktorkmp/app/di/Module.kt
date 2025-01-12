@@ -5,7 +5,6 @@ import org.koin.dsl.module
 import org.ktor.ktorkmp.app.screens.bankPrice.BankPriceViewModel
 import org.ktor.ktorkmp.app.screens.currencyprice.CurrencyPriceViewModel
 import org.ktor.ktorkmp.app.screens.goldprice.GoldPriceViewModel
-import org.ktor.ktorkmp.data.local.LocalDatabase
 import org.ktor.ktorkmp.data.repo.BankPriceRepoImpl
 import org.ktor.ktorkmp.data.repo.CurrencyPriceRepoImpl
 import org.ktor.ktorkmp.data.repo.GoldPriceRepoImpl
@@ -23,9 +22,7 @@ val sharedModule = module {
     single<GoldPriceRepo> { GoldPriceRepoImpl(get()) }
     single<BankPriceRepo> { BankPriceRepoImpl(get()) }
 
-    single<ItemSDK> { ItemSDK(get(), get(), get(), get() )}
-
-    single<LocalDatabase> { LocalDatabase(get()) }
+    single<ItemSDK> { ItemSDK(get(), get(), get())}
 
     //single{ CurrencyPriceViewModel(currencyPriceRepo = get(), itemSDK = get() ) }
     factory { CurrencyPriceViewModel(currencyPriceRepo = get(), itemSDK = get()) }
