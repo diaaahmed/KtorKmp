@@ -11,9 +11,12 @@ import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
@@ -30,33 +33,36 @@ fun App() {
     MaterialTheme {
         TabNavigator(CurrencyTab)
         {
-            Scaffold(
-                content = {
-                    Box(
-                        modifier = Modifier
-                            .padding(it)
-                    ) {
+            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl){
+                Scaffold(
+                    content = {
+                        Box(
+                            modifier = Modifier
+                                .padding(it)
+                        ) {
 
-                        CurrentTab()
-                    }
-                },
-                bottomBar = {
-                    BottomNavigation(
-                        backgroundColor = Color(0xFFD0956F),
-                        modifier = Modifier
-                            .padding(
-                                horizontal = 30.sdp,
-                                vertical = 6.sdp
-                            )
-                            .clip(shape = RoundedCornerShape(10.sdp))
-                    ) {
+                            CurrentTab()
+                        }
+                    },
+                    bottomBar = {
+                        BottomNavigation(
+                            backgroundColor = Color(0xFFD0956F),
+                            modifier = Modifier
+                                .padding(
+                                    horizontal = 30.sdp,
+                                    vertical = 6.sdp
+                                )
+                                .clip(shape = RoundedCornerShape(10.sdp))
+                        ) {
 
-                        TabNavigationItem(CurrencyTab)
-                        TabNavigationItem(GoldTab)
-                        TabNavigationItem(BankTab)
+                            TabNavigationItem(CurrencyTab)
+                            TabNavigationItem(GoldTab)
+                            TabNavigationItem(BankTab)
+                        }
                     }
-                }
-            )
+                )
+            }
+
         }
 
     }

@@ -48,21 +48,6 @@ class CurrencyPriceViewModel(
                 }
 
 
-//            currencyPriceRepo.getCurrencyPrice()
-//                .collect{response->
-//                    when(response)
-//                    {
-//                        is Result.Error -> {
-//                            _currencyPriceState.update { Result.Error(response.message) }
-//                        }
-//                        is Result.Loading -> {
-//                            _currencyPriceState.update { Result.Loading() }
-//                        }
-//                        is Result.Success -> {
-//                            _currencyPriceState.update { Result.Success(response.data!!) }
-//                        }
-//                    }
-//                }
         }
     }
 }
